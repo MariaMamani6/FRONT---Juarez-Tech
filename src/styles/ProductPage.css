@@ -1,0 +1,111 @@
+/* styles/ProductPage.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #ffffff;
+  padding: 1.5rem;
+}
+
+.header {
+  padding: 1.5rem;
+  background-color: #7CC9D0; /* Color celeste */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buscador input {
+  width: 300px;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white; /* Fondo blanco */
+  color: #333; /* Texto oscuro */
+}
+
+.boton-agregar {
+  background-color: #7CC9D0; /* Color celeste */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton-agregar:hover {
+  background-color: #6ab3c5; /* Color celeste más oscuro */
+}
+
+.tabla-productos {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 0 auto; /* Centra la tabla horizontalmente */
+  max-width: 1200px; /* Ancho máximo para la tabla */
+}
+
+.encabezado-tabla {
+  display: flex;
+  background-color: #7CC9D0; /* Color celeste */
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.fila-producto {
+  display: flex;
+  padding: 1rem;
+  background-color: #ffffff;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.columna-id { width: 33%; }
+.columna-nombre { width: 33%; }
+.columna-acciones { width: 33%; }
+
+.boton-editar {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.boton-eliminar {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}

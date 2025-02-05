@@ -1,7 +1,11 @@
-import LoginPage from './pages/LoginPage'
+import AppRouter from './routes/AppRouter';
 
-function App() {
-  return <LoginPage />
-}
+const App = () => {
+  return (
+    <div>
+      <AppRouter />
+    </div>
+  );
+};
 
-export default App
+export default App;
