@@ -1,3 +1,4 @@
+/* styles/style.css */
 .app-container {
   display: flex;
   min-height: 100vh;
@@ -70,6 +71,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  background-color: white; /* Fondo blanco */
 }
 
 .form-footer {
@@ -106,14 +108,22 @@
 
 @media (max-width: 768px) {
   .app-container {
-    flex-direction: column;
+      flex-direction: column;
   }
-  
+
   .left-section {
-    padding: 1rem;
+      padding: 1rem;
   }
-  
+
   .rocket {
-    width: 150px;
+      width: 150px;
+  }
+
+  .right-section {
+      padding: 1rem;
+  }
+
+  .login-container {
+      max-width: 100%;
   }
 }

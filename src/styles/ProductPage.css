@@ -19,16 +19,21 @@
 
 .header {
   padding: 1.5rem;
-  background-color: #7CC9D0; /* Color celeste */
+  background-color: #7CC9D0; /* Celeste color */
   color: #ffffff;
   border-radius: 8px;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.acciones {
+.content {
+  padding: 1rem;
+}
+
+.actions {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Alinea verticalmente los elementos */
   padding: 1rem;
   background-color: #ffffff;
   border-radius: 8px;
@@ -36,18 +41,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.buscador input {
+.search-bar input {
   width: 300px;
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: white; /* Fondo blanco */
-  color: #333; /* Texto oscuro */
+  background-color: white; /* White background */
+  color: #333; /* Dark text */
 }
 
-.boton-agregar {
-  background-color: #7CC9D0; /* Color celeste */
+.add-button {
+  background-color: #7CC9D0; /* Celeste color */
   color: white;
   padding: 0.8rem 1.5rem;
   border: none;
@@ -56,42 +61,47 @@
   transition: background-color 0.3s;
 }
 
-.boton-agregar:hover {
-  background-color: #6ab3c5; /* Color celeste más oscuro */
+.add-button:hover {
+  background-color: #6ab3c5; /* Darker celeste color */
 }
 
-.tabla-productos {
+.product-table {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  margin: 0 auto; /* Centra la tabla horizontalmente */
-  max-width: 1200px; /* Ancho máximo para la tabla */
+  margin: 0 auto; /* Center the table horizontally */
+  max-width: 1200px; /* Maximum width for the table */
 }
 
-.encabezado-tabla {
+.table-header {
   display: flex;
-  background-color: #7CC9D0; /* Color celeste */
+  background-color: #7CC9D0; /* Celeste color */
   color: white;
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 1rem;
 }
 
-.fila-producto {
+.product-row {
   display: flex;
   padding: 1rem;
   background-color: #ffffff;
   margin-bottom: 0.5rem;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  align-items: center; /* Alinea verticalmente los elementos */
 }
 
-.columna-id { width: 33%; }
-.columna-nombre { width: 33%; }
-.columna-acciones { width: 33%; }
+.column-id { width: 5%; } /* ID column width */
+.column-name { width: 25%; } /* Product name column width */
+.column-description { width: 30%; } /* Description column width */
+.column-price { width: 10%; } /* Price column width */
+.column-category { width: 15%; } /* Category column width */
+.column-stock { width: 5%; } /* Stock column width */
+.column-actions { width: 10%; text-align: center; } /* Actions column width, centered */
 
-.boton-editar {
+.edit-button {
   background-color: #2980b9;
   color: white;
   border: none;
@@ -101,7 +111,7 @@
   margin-right: 0.5rem;
 }
 
-.boton-eliminar {
+.delete-button {
   background-color: #e74c3c;
   color: white;
   border: none;

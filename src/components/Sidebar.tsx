@@ -13,7 +13,18 @@ const SidebarProductos = () => {
       icono: <MdOutlineInventory size={20} />,
       ruta: "/productos",
     },
+
+    {
+      nombre: "Categoria",
+      icono: <MdOutlineInventory size={20} />,
+      ruta: "/productos",
+    },
    
+    {
+      nombre: "Productos",
+      icono: <MdOutlineInventory size={20} />,
+      ruta: "/productos",
+    },
   ];
 
   return (
