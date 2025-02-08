@@ -19,7 +19,7 @@
 
 .header {
   padding: 1.5rem;
-  background-color: #7CC9D0; /* Celeste color */
+  background-color: #7CC9D0; /* Celeste */
   color: #ffffff;
   border-radius: 8px;
   margin-bottom: 1.5rem;
@@ -33,7 +33,7 @@
 .actions {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alinea verticalmente los elementos */
+  align-items: center;
   padding: 1rem;
   background-color: #ffffff;
   border-radius: 8px;
@@ -47,12 +47,12 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: white; /* White background */
-  color: #333; /* Dark text */
+  background-color: white;
+  color: #333;
 }
 
 .add-button {
-  background-color: #7CC9D0; /* Celeste color */
+  background-color: #7CC9D0;
   color: white;
   padding: 0.8rem 1.5rem;
   border: none;
@@ -62,21 +62,30 @@
 }
 
 .add-button:hover {
-  background-color: #6ab3c5; /* Darker celeste color */
+  background-color: #6ab3c5;
 }
 
+/* Contenedor para permitir scroll horizontal */
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* La tabla se define con un ancho mínimo para que, en viewports pequeños, se active el scroll */
 .product-table {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  margin: 0 auto; /* Center the table horizontally */
-  max-width: 1200px; /* Maximum width for the table */
+  min-width: 1200px;
+}
+
+.table-header,
+.product-row {
+  display: flex;
 }
 
 .table-header {
-  display: flex;
-  background-color: #7CC9D0; /* Celeste color */
+  background-color: #7CC9D0;
   color: white;
   padding: 1rem;
   border-radius: 4px;
@@ -84,22 +93,22 @@
 }
 
 .product-row {
-  display: flex;
   padding: 1rem;
   background-color: #ffffff;
   margin-bottom: 0.5rem;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  align-items: center; /* Alinea verticalmente los elementos */
+  align-items: center;
 }
 
-.column-id { width: 5%; } /* ID column width */
-.column-name { width: 25%; } /* Product name column width */
-.column-description { width: 30%; } /* Description column width */
-.column-price { width: 10%; } /* Price column width */
-.column-category { width: 15%; } /* Category column width */
-.column-stock { width: 5%; } /* Stock column width */
-.column-actions { width: 10%; text-align: center; } /* Actions column width, centered */
+/* Anchos fijos en píxeles (o porcentajes relativos a 1200px) */
+.column-id { width: 5%; }
+.column-name { width: 25%; }
+.column-description { width: 30%; }
+.column-price { width: 10%; }
+.column-category { width: 15%; }
+.column-stock { width: 5%; }
+.column-actions { width: 10%; text-align: center; }
 
 .edit-button {
   background-color: #2980b9;
@@ -118,4 +127,16 @@
   padding: 0.5rem;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* Ajustes responsive para las acciones y búsqueda */
+@media screen and (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .search-bar input {
+    width: 100%;
+  }
 }

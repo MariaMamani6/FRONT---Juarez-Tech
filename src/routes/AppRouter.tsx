@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProductPage from '../pages/ProductPage'; // Asegúrate de importar tus componentes
+import ProductPage from '../pages/ProductPage'; 
 import LoginPage from '../pages/LoginPage';
 import AddProductPage from '../pages/AddProductPage';
+import RegisterPage from '../pages/RegisterPage';
 
 const AppRouter = () => {
   return (
@@ -12,7 +13,8 @@ const AppRouter = () => {
 
         {/* Otras rutas */}
         <Route path="/productos" element={<ProductPage />} />
-        <Route path="/Agregar" element={<AddProductPage />} />
+        <Route path="/agregar" element={<AddProductPage />} />
+        <Route path="/registrar" element={<RegisterPage />} />
         {/* Agrega más rutas según sea necesario */}
       </Routes>
     </Router>
