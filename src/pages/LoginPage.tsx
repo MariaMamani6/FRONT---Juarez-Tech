@@ -6,7 +6,7 @@ import '../styles/LoginPage.css';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // Extraemos solo lo que usaremos para evitar warnings
+  
   const { login, error, loading } = useAuth(); // Agregamos loading
   const [mensaje, setMensaje] = useState('');
 
@@ -15,7 +15,7 @@ function LoginPage() {
     try {
       const data = await login(email, password);
       setMensaje(data.message);
-      // Aquí podrías redirigir al usuario (por ejemplo, a /productos)
+      
     } catch (err: any) {
       setMensaje('Error en el inicio de sesión');
     }
