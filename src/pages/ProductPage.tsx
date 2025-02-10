@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import SidebarProductos from '../components/Sidebar';
 import '../styles/ProductPage.css';
-import { useProductos, Product } from '../hooks/useProductos'; // Import useProducts and Product interface
+import { useProductos, Product } from '../hooks/useProductos';
 
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  // We are not using setProducts inside this component
+  // Se asume que useProductos devuelve products, loading, error y deleteProduct
   const { products, loading, error, deleteProduct } = useProductos(searchTerm);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,24 +18,27 @@ const ProductPage = () => {
   };
 
   const handleAddProduct = () => {
-    navigate('/agregar'); // Redirect to add product page
+    navigate('/agregar'); // Redirige a la página para agregar un producto
   };
 
   const handleDelete = async (id: string) => {
     try {
       await deleteProduct(id);
-    } catch (error: any) {
-      console.error('Error deleting product:', error);
+      // Se asume que deleteProduct actualiza la lista de productos
+    } catch (err: any) {
+      console.error('Error deleting product:', err);
     }
   };
 
   return (
     <div className="app-container">
+      {/* Sidebar a la izquierda */}
       <SidebarProductos />
 
+      {/* Contenido principal */}
       <div className="main-content">
         <header className="header">
-          <h1>PRODUCTS</h1>
+          <h1>PRODUCTOS</h1>
         </header>
 
         <div className="content">
@@ -49,7 +52,7 @@ const ProductPage = () => {
               />
             </div>
             <button className="add-button" onClick={handleAddProduct}>
-              Add
+              Agregar
             </button>
           </div>
 
@@ -79,10 +82,16 @@ const ProductPage = () => {
                     <div className="column-category">{product.category}</div>
                     <div className="column-stock">{product.stock}</div>
                     <div className="column-actions">
-                      <button className="edit-button" onClick={() => navigate(`/editar/${product.id}`)}>
+                      <button
+                        className="edit-button"
+                        onClick={() => navigate(`/editar/${product.id}`)}
+                      >
                         <FaEdit />
                       </button>
-                      <button className="delete-button" onClick={() => handleDelete(product.id)}>
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDelete(product.id)}
+                      >
                         <FaTrash />
                       </button>
                     </div>
