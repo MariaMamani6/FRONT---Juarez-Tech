@@ -1,87 +1,41 @@
-// pages/ProductPage.tsx
+// src/pages/ProductPage.tsx
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import SidebarProductos from '../components/Sidebar';
 import '../styles/ProductPage.css';
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  stock: number;
-  user: string;
-}
+import { useProductos, Product } from '../hooks/useProductos'; // Import useProducts and Product interface
 
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
-  // Lista de productos estática con datos completos
-  const products: Product[] = [
-    {
-      id: '01',
-      name: 'Laptop Pro',
-      description: 'Descripcion 1',
-      price: 1200.0,
-      category: 'Electronica',
-      stock: 50,
-      user: 'Admin'
-    },
-    {
-      id: '02',
-      name: 'Silla Ergonomica',
-      description: 'Descripcion 2',
-      price: 250.0,
-      category: 'Mueble',
-      stock: 100,
-      user: 'User 1'
-    },
-    {
-      id: '03',
-      name: 'Mouse',
-      description: 'Descripcion 3',
-      price: 25.0,
-      category: 'Electronica',
-      stock: 200,
-      user: 'user 2'
-    },
-    {
-      id: '04',
-      name: 'Notebook A5',
-      description: 'Descripcion 4',
-      price: 5.0,
-      category: 'Electronica',
-      stock: 500,
-      user: 'Admin'
-    },
-    {
-      id: '05',
-      name: 'External SSD 1TB',
-      description: 'Descripcion 5',
-      price: 180.0,
-      category: 'Electronica',
-      stock: 75,
-      user: 'user 3'
-    }
-  ];
+  // We are not using setProducts inside this component
+  const { products, loading, error, deleteProduct } = useProductos(searchTerm);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleAddProduct = () => {
+    navigate('/agregar'); // Redirect to add product page
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteProduct(id);
+    } catch (error: any) {
+      console.error('Error deleting product:', error);
+    }
+  };
 
   return (
     <div className="app-container">
-      {/* Sidebar a la izquierda */}
       <SidebarProductos />
 
       <div className="main-content">
         <header className="header">
-          <h1>PRODUCTOS</h1>
+          <h1>PRODUCTS</h1>
         </header>
 
         <div className="content">
@@ -89,48 +43,54 @@ const ProductPage = () => {
             <div className="search-bar">
               <input
                 type="text"
-                placeholder="Buscar producto..."
+                placeholder="Search product..."
                 value={searchTerm}
                 onChange={handleSearch}
               />
             </div>
-            <button className="add-button">Agregar</button>
+            <button className="add-button" onClick={handleAddProduct}>
+              Add
+            </button>
           </div>
 
-          {/* Contenedor con scroll horizontal en caso de que el ancho sea menor al requerido */}
-          <div className="table-scroll">
-            <div className="product-table">
-              <div className="table-header">
-                <div className="column-id">ID</div>
-                <div className="column-name">Producto</div>
-                <div className="column-description">Descripcion</div>
-                <div className="column-price">Precio</div>
-                <div className="column-category">Categoria</div>
-                <div className="column-stock">Stock</div>
-                <div className="column-actions">Acciones</div>
-              </div>
-
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="product-row">
-                  <div className="column-id">{product.id}</div>
-                  <div className="column-name">{product.name}</div>
-                  <div className="column-description">{product.description}</div>
-                  <div className="column-price">$ {product.price}</div>
-                  <div className="column-category">{product.category}</div>
-                  <div className="column-stock">{product.stock}</div>
-                  <div className="column-actions">
-                    <button className="edit-button">
-                      <FaEdit />
-                    </button>
-                    <button className="delete-button">
-                      <FaTrash />
-                    </button>
-                  </div>
+          {loading ? (
+            <p>Loading products...</p>
+          ) : error ? (
+            <p>Error: {error}</p>
+          ) : (
+            <div className="table-scroll">
+              <div className="product-table">
+                <div className="table-header">
+                  <div className="column-id">ID</div>
+                  <div className="column-name">Product</div>
+                  <div className="column-description">Description</div>
+                  <div className="column-price">Price</div>
+                  <div className="column-category">Category</div>
+                  <div className="column-stock">Stock</div>
+                  <div className="column-actions">Actions</div>
                 </div>
-              ))}
+
+                {products.map((product: Product) => (
+                  <div key={product.id} className="product-row">
+                    <div className="column-id">{product.id}</div>
+                    <div className="column-name">{product.name}</div>
+                    <div className="column-description">{product.description}</div>
+                    <div className="column-price">$ {product.price}</div>
+                    <div className="column-category">{product.category}</div>
+                    <div className="column-stock">{product.stock}</div>
+                    <div className="column-actions">
+                      <button className="edit-button" onClick={() => navigate(`/editar/${product.id}`)}>
+                        <FaEdit />
+                      </button>
+                      <button className="delete-button" onClick={() => handleDelete(product.id)}>
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          {/* Fin contenedor scroll */}
+          )}
         </div>
       </div>
     </div>

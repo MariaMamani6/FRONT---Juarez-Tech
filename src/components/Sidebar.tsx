@@ -1,22 +1,31 @@
 // components/SidebarProductos.tsx
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaTrash, FaBars } from "react-icons/fa"; // Importamos FaBars para el icono de hamburguesa
+import { FaTrash, FaBars } from "react-icons/fa";
 import { MdOutlineInventory } from "react-icons/md";
 import "../styles/Sidebar.css";
+import { useAuth } from "../hooks/useAuth"; // Importa useAuth
 
 const SidebarProductos = () => {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false); // Estado para abrir/cerrar el sidebar
+  const [isOpen, setIsOpen] = useState(false);
+  const { logout, loading, error } = useAuth(); // Usa el hook useAuth
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-    console.log("Sidebar abierto:", !isOpen); // Debugging
+    console.log("Sidebar abierto:", !isOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   const menuItems = [
     { nombre: "Productos", icono: <MdOutlineInventory size={20} />, ruta: "/productos" },
-    
   ];
 
   return (
@@ -38,7 +47,7 @@ const SidebarProductos = () => {
               key={item.nombre}
               to={item.ruta}
               className={`sidebar-item ${location.pathname === item.ruta ? "active" : ""}`}
-              onClick={() => setIsOpen(false)} // Cierra el sidebar al hacer clic en un enlace
+              onClick={() => setIsOpen(false)}
             >
               {item.icono}
               <span>{item.nombre}</span>
@@ -46,10 +55,15 @@ const SidebarProductos = () => {
           ))}
 
           {/* Botón de cerrar sesión */}
-          <button className="logout-button" onClick={() => setIsOpen(false)}>
+          <button
+            className="logout-button"
+            onClick={handleLogout}
+            disabled={loading}
+          >
             <FaTrash size={18} />
-            <span>Cerrar sesión</span>
+            <span>{loading ? "Cerrando sesión..." : "Cerrar sesión"}</span>
           </button>
+          {error && <p className="error-message">{error}</p>}
         </nav>
       </div>
     </>
